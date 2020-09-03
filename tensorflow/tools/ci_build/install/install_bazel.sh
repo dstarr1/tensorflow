@@ -34,10 +34,14 @@ cd /bazel
 #  curl -fSsL -O https://github.com/bazelbuild/bazel/releases/download/$BAZEL_VERSION/bazel-$BAZEL_VERSION-installer-linux-x86_64.sh
 curl -fSsL -O https://github.com/bazelbuild/bazel/releases/download/$BAZEL_VERSION/bazel-$BAZEL_VERSION-dist.zip
 unzip bazel-$BAZEL_VERSION-dist.zip
-cp /workspace/tensorflow/tools/ci_build/install/tocopy_compile.sh /bazel/bazel/scripts/bootstrap/compile.sh
-cp /workspace/tensorflow/tools/ci_build/install/tocopy_cc_configure.bzl /bazel/bazel/tools/cpp/cc_configure.bzl
 
-cd bazel
+#cp /workspace/tensorflow/tools/ci_build/install/tocopy_compile.sh /bazel/bazel/scripts/bootstrap/compile.sh
+#cp /workspace/tensorflow/tools/ci_build/install/tocopy_cc_configure.bzl /bazel/bazel/tools/cpp/cc_configure.bzl
+cp /install/tocopy_compile.sh /bazel/scripts/bootstrap/compile.sh
+cp /install/tocopy_cc_configure.bzl /bazel/tools/cpp/cc_configure.bzl
+
+
+#cd bazel
 # TODO might need to copy the modified files mentioned in be README.md
 env EXTRA_BAZEL_ARGS="--host_cpu=arm --cpu=arm --host_javabase=@local_jdk//:jdk" bash ./compile.sh
 
